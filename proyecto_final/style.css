@@ -1,0 +1,12 @@
+body {
+  font-family: 'Inconsolata', monospace;
+}
+
+.container-fluid {
+  background: linear-gradient(220.55deg, #61C695 0%, #133114 100%);
+}
+
+
+.footer {
+  font-weight: 400;
+}
