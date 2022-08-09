@@ -59,6 +59,7 @@ const addBook = (e) => {
       </form>
       </div>
     `;
+  //ACA TENGO EL PROBLEMA, NO LOGRO AGREGAR EL NUEVO ITEM AL ARRAY QUE YA TENGO CREADO.
   const $form = document.getElementById('form');
   $form.addEventListener('submit', (e) => {
     e.preventDefault();
