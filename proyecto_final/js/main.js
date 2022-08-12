@@ -1,42 +1,10 @@
-//Lista de libros predefinida.
-const listaLibros = [
-  {
-    "title": "El resplandor",
-    "author": "Stephen King",
-    "release": 1977
-  },
-  {
-    "title": "Harry Potter y el cáliz de fuego",
-    "author": "J.K. Rowling",
-    "release": 2000
-  },
-  {
-    "title": "Duna",
-    "author": "Frank Herbert",
-    "release": 1965
-  },
-  {
-    "title": "Rayuela",
-    "author": "Julio Cortazar",
-    "release": 1963
-  },
-  {
-    "title": "Nuestra parte de noche",
-    "author": "Mariana Enriquez",
-    "release": 2019
-  },
-  {
-    "title": "Ficciones",
-    "author": "Jorge Luis Borges",
-    "release": 1944
-  }
-];
+import { listaLibros } from "./listaLibros.js";
 
 //Declaración de variables.
 const $main = document.getElementById('main'),
   $addBook = document.getElementById('add-book'),
   $library = document.getElementById('library'),
-  librosJSON = localStorage.setItem('libros', JSON.stringify(listaLibros));
+  librosJSON = localStorage.setItem('libros', JSON.stringify(listaLibros)),
   addBookUI = `
     <div class="container">
       <h2 class="fw-bolder mb-4">Ingrese los siguientes datos:</h2>
@@ -72,7 +40,9 @@ const addBook = () => {
     };
     listaLibros.push(libroNuevo);
     localStorage.setItem('libros', JSON.stringify(listaLibros));
-    $main.innerHTML = `<h2>Agregado con exito</h2>`;
+    addBookOk();
+    // $main.innerHTML = '';
+    showLibrary();
   });
 };
 
@@ -86,6 +56,17 @@ const showLibrary = () => {
     library.innerHTML = `"${el.title}" fue escrito por ${el.author} y lanzado en ${el.release}`;
     container.append(library);
     $main.append(container);
+  });
+};
+
+//Función que muestra un alert confirmando que se agrego el libro a la biblioteca.
+const addBookOk = () => {
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Libro agregado con éxito!',
+    showConfirmButton: false,
+    timer: 1800
   });
 };
 
