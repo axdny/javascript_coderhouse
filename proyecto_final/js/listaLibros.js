@@ -1,4 +1,5 @@
 //Lista de libros predefinida.
+
 export const listaLibros = [
   {
     "title": "El resplandor",
