@@ -4,7 +4,6 @@ import { listaLibros } from "./listaLibros.js";
 const $main = document.getElementById('main'),
   $addBook = document.getElementById('add-book'),
   $library = document.getElementById('library'),
-  librosJSON = localStorage.setItem('libros', JSON.stringify(listaLibros)),
   addBookUI = `
     <div class="container">
       <h2 class="fw-bolder mb-4">Ingrese los siguientes datos:</h2>
@@ -24,8 +23,26 @@ const $main = document.getElementById('main'),
           <button type="submit" class="btn btn-light btn-outline-dark btn-lg w-50 mb-3 mt-3">Agregar</button>
         </form>
         </div>
-    `;
-
+    `,
+  LibraryUI = `
+    <table class="table table-responsive text-white">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Autor</th>
+          <th>Lanzamiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="tdTitle"></td>
+          <td id="tdAuthor"></td>
+          <td id="tdRelease"></td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+  
 //Función que añade al main los inputs para agregar libros.
 const addBook = () => {
   $main.innerHTML = addBookUI;
@@ -41,21 +58,20 @@ const addBook = () => {
     listaLibros.push(libroNuevo);
     localStorage.setItem('libros', JSON.stringify(listaLibros));
     addBookOk();
-    // $main.innerHTML = '';
     showLibrary();
   });
 };
 
 //Función que muestra todos los libros que tenemos guardados en la biblioteca.
 const showLibrary = () => {
-  $main.innerHTML = '';
+  $main.innerHTML = LibraryUI;
   listaLibros.forEach(el => {
-    //Creamos un div para mostrar la info de los libros almacenados
-    const container = document.createElement('div');
-    const library = document.createElement('p');
-    library.innerHTML = `"${el.title}" fue escrito por ${el.author} y lanzado en ${el.release}`;
-    container.append(library);
-    $main.append(container);
+    const tdTitle = document.getElementById('tdTitle'),
+      tdAuthor = document.getElementById('tdAuthor'),
+      tdRelease = document.getElementById('tdRelease');
+    tdTitle.innerText = el.title;
+    tdAuthor.innerText = el.author;
+    tdRelease.innerText = el.release;
   });
 };
 
