@@ -1,5 +1,6 @@
 // import { listaLibros } from "./listaLibros.js";
-import { addBookUI, LibraryUI } from "./ui.js";
+import { addBookUI, LibraryUI } from './ui.js';
+// import listaLibros from '../lista.json' assert {type: 'json'};
 
 //Declaración de variables.
 const $main = document.getElementById('main'),
@@ -12,17 +13,18 @@ const addBook = () => {
   const $form = document.getElementById('form');
   $form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const datos = e.target;
+    const data = new FormData(e.target);
+    const value = Object.fromEntries(data.entries());
     fetch('./lista.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF8',
       },
-      body: JSON.stringify({
-        title: datos[1].value,
-        author: datos[0].value,
-        release: datos[2].value,
-      }),
+      body: {
+        title: value.title,
+        author: value.author,
+        release: value.release,
+      },
     })
       .then(response => response.json())
       .then(json => console.log(json))
@@ -31,7 +33,7 @@ const addBook = () => {
     showLibrary();
   });
 };
-
+    
 //Función que muestra todos los libros que tenemos guardados en la biblioteca.
 const showLibrary = () => {
   $main.innerHTML = LibraryUI;
