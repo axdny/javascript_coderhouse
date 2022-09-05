@@ -22,15 +22,17 @@ export const addBookUI = `
 `;
 
 export const LibraryUI = `
-  <table class="table table-responsive text-white mb-5 mt-3">
-    <thead>
-      <tr class="text-start fs-2 fst-italic">
-        <th>Titulo</th>
-        <th>Autor</th>
-        <th>Lanzamiento</th>
-      </tr>
-    </thead>
-    <tbody id="tbody" class="text-start">
-    </tbody>
-  </table>
+  <div class="container">
+    <table class="table text-white mb-5 mt-3">
+      <thead>
+        <tr class="text-start fs-2 fst-italic">
+          <th>Titulo</th>
+          <th>Autor</th>
+          <th>Lanzamiento</th>
+        </tr>
+      </thead>
+      <tbody id="tbody" class="text-start">
+      </tbody>
+    </table>
+  </div>
 `;

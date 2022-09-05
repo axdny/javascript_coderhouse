@@ -1,6 +1,4 @@
-// import { listaLibros } from "./listaLibros.js";
 import { addBookUI, LibraryUI } from './ui.js';
-// import listaLibros from '../lista.json' assert {type: 'json'};
 
 //Declaración de variables.
 const $main = document.getElementById('main'),
@@ -37,10 +35,9 @@ const addBook = () => {
 //Función que muestra todos los libros que tenemos guardados en la biblioteca.
 const showLibrary = () => {
   $main.innerHTML = LibraryUI;
-  fetch('./lista.json')
+  fetch('./db.json')
     .then(response => response.json())
     .then(json => {
-      // console.log(json);
       json.forEach(el => {
         const tbody = document.getElementById('tbody');
         let tr = document.createElement('tr');
