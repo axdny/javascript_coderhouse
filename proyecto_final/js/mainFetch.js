@@ -35,7 +35,7 @@ const addBook = () => {
 //Función que muestra todos los libros que tenemos guardados en la biblioteca.
 const showLibrary = () => {
   $main.innerHTML = LibraryUI;
-  fetch('https://my-json-server.typicode.com/axdny/javascript_coderhouse/')
+  fetch('https://my-json-server.typicode.com/axdny/javascript_coderhouse/books')
     .then(response => response.json())
     .then(json => {
       json.forEach(el => {
