@@ -9,7 +9,7 @@ const $main = document.getElementById('main'),
 const addBook = () => {
   $main.innerHTML = addBookUI;
   const $form = document.getElementById('form');
-  $form.addEventListener('submit', (e) => {
+  $form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const datos = e.target
     const body = {
@@ -17,7 +17,7 @@ const addBook = () => {
       author: datos[0].value,
       release: parseInt(datos[2].value),
     };
-    fetch('https://my-json-server.typicode.com/axdny/javascript_coderhouse/books', {
+    await fetch('https://my-json-server.typicode.com/axdny/javascript_coderhouse/books', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {'Content-type': 'application/json; charset=UTF-8'}
