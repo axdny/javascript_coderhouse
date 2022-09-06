@@ -11,18 +11,16 @@ const addBook = () => {
   const $form = document.getElementById('form');
   $form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const value = Object.fromEntries(data.entries());
-    fetch('./lista.json', {
+    const datos = e.target
+    const body = {
+      title: datos[1].value,
+      author: datos[0].value,
+      release: parseInt(datos[2].value),
+    };
+    fetch('https://my-json-server.typicode.com/axdny/javascript_coderhouse/books', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF8',
-      },
-      body: {
-        title: value.title,
-        author: value.author,
-        release: value.release,
-      },
+      body: JSON.stringify(body),
+      headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
       .then(response => response.json())
       .then(json => console.log(json))
